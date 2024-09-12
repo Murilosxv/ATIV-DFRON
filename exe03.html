@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atividade 03</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+
+</head>
+<body>
+    <div id="app">
+        <input v-model="novoItem" @keyup.enter="adicionarItem" placeholder="Digite um novo item" />
+        <ul>
+            <li v-for="(item, index) in itens" :key="index" @click="removerItem(index)">
+                {{ item }}
+            </li>
+        </ul>
+    </div>
+
+    <script>
+        new Vue({
+            el: '#app',
+            data() {
+                return {
+                    itens: ["Item 1", "Item 2", "Item 3"],
+                    novoItem: ""
+                };
+            },
+            methods: {
+                adicionarItem() {
+                    if (this.novoItem.trim()) {
+                        this.itens.push(this.novoItem.trim());
+                        this.novoItem = "";
+                    }
+                },
+                removerItem(index) {
+                    this.itens.splice(index, 1);
+                }
+            }
+        });
+    </script>
+</body>
+</html>
+
